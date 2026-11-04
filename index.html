@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>COMIC tracker</title>
+  <meta name="theme-color" content="#303030">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#/">Comic Tracker</a>
+    <nav aria-label="Main">
+      <a href="#/" data-route="library">Library</a>
+      <a class="avatar-link" href="#/profile" data-route="profile" aria-label="Profile">
+        <!-- Default avatar; app.js swaps in the user's picture when one is set -->
+        <span class="avatar-mini" id="header-avatar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7z"/></svg>
+        </span>
+      </a>
+    </nav>
+  </header>
+  <main id="app"></main>
+  <div id="fab-root"></div>
+  <script src="app.js" defer></script>
+</body>
+</html>
