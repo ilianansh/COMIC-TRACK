@@ -296,7 +296,9 @@ function openEntryForm(comic = null, defaultFolder = null) {
       field('Comic type', h('input', { class: 'input', name: 'type', maxLength: 40, placeholder: 'Manga, graphic novel…', value: comic?.type ?? '' })),
       field('Reading status', h('select', { class: 'input', name: 'status' },
         Object.entries(STATUSES).map(([v, l]) => h('option', { value: v, selected: (comic?.status ?? 'want') === v }, l))))),
-    field('Folder', h('select', { class: 'input', name: 'folderId' },
+        field('Date read', h('input', { class: 'input', name: 'dateRead', type: 'date', value: comic?.dateRead ?? '' })),
+        field('Folder', h('select', { class: 'input', name: 'folderId' },
+
       h('option', { value: '', selected: !folderId }, 'Unsorted'),
       state.folders.map(f => h('option', { value: f.id, selected: f.id === folderId }, f.name)))),
     h('div', { class: 'field' }, h('span', {}, 'Rating'), stars(rating, v => { rating = v; })),
@@ -320,6 +322,7 @@ function openEntryForm(comic = null, defaultFolder = null) {
       title, rating,
       author: fd.get('author').trim(),
       releaseDate: fd.get('releaseDate'),
+            dateRead: fd.get('dateRead'),
       type: fd.get('type').trim(),
       status: fd.get('status'),
       folderId: fd.get('folderId') || null,
@@ -347,6 +350,7 @@ function renderDetail(root, id) {
   const rows = [
     ['Author', comic.author],
     ['Released', comic.releaseDate && formatDate(comic.releaseDate)],
+        ['Date read', comic.dateRead && formatDate(comic.dateRead)],
     ['Type', comic.type],
     ['Folder', folder ? h('a', { href: `#/folder/${folder.id}` }, folder.name) : 'Unsorted']
   ].filter(([, v]) => v).flatMap(([k, v]) => [h('dt', {}, k), h('dd', {}, v)]);
